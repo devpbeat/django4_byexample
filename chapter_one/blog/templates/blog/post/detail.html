@@ -1,18 +1,19 @@
 {% extends 'blog/base.html' %}
 
-{% block title %}Post {{post.id}}{% endblock %}
+{% block title %}Post {{post.title}}{% endblock %}
 
 {% block content %}
 <h1>{{post.title}}</h1>
-    {% for post in posts %}
-        <h2>
-            <a href="{{ post.get_absolute_url }}">
-                {{ post.title }}
-            </a>
-        </h2>
-        <p class="date">
-            Published {{ post.publish }} by {{ post.author }}
-        </p>
-        {{ post.body|truncatewords:30|linebreaks }}
-    {% endfor %}
+{{post.slug}}
+<br>
+{{post.author}}
+<br>
+{{post.body}}
+<br>
+{{post.publish| date:"M d, Y"}}
+<br>
+{{post.created| date:"M d, Y"}}
+<br>
+{{post.updated| date:"M d, Y"}}
+<br>
 {% endblock %}

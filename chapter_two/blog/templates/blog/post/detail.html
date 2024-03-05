@@ -1,18 +1,20 @@
 {% extends 'blog/base.html' %}
 
-{% block title %}Post {{post.id}}{% endblock %}
+{% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-<h1>{{post.title}}</h1>
-    {% for post in posts %}
-        <h2>
-            <a href="{{ post.get_absolute_url }}">
-                {{ post.title }}
-            </a>
-        </h2>
-        <p class="date">
-            Published {{ post.publish }} by {{ post.author }}
-        </p>
-        {{ post.body|truncatewords:30|linebreaks }}
-    {% endfor %}
+<article class="prose mx-auto max-w-3xl">
+    <h1>{{ post.title }}</h1>
+    <p class="text-gray-600 text-sm mb-4">
+        Published {{ post.publish }} by {{ post.author }}
+    </p>
+    <div class="mb-8">
+        {% if post.image %}
+            <img class="w-full rounded-lg mb-4" src="{{ post.image.url }}" alt="{{ post.title }}">
+        {% endif %}
+    </div>
+    <div class="content">
+        {{ post.body }}
+    </div>
+</article>
 {% endblock %}

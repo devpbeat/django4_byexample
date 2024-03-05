@@ -29,6 +29,10 @@ class Post(models.Model):
     objects = models.Manager()
     published = PublishedManager()
 
+    prepopulated_fields = {
+        'slug': ('title',)
+    }
+    
     class Meta:
         ordering = ['-publish']
         indexes = [

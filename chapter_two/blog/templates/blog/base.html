@@ -4,17 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} {% endblock %}</title>
-    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
-</head>
-<body>
-    <div id="content">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <div id="sidebar">
-        <h2>My Blog</h2>
-        <p>This is my blog. I hope you like it.</p>
-    </div>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">  </head>
+<body class="min-h-screen flex flex-col">
+    <header class="flex justify-between px-8 py-4 bg-gray-800 text-white">
+        <h1>My Blog</h1>
+        <nav class="space-x-4">
+            <a href="{% url 'blog:post_list' %}" class="hover:text-gray-200">Home</a>
+            </nav>
+    </header>
+    <main class="flex flex-row">  <div class="flex-grow bg-white px-8 py-4">  {% block content %}
+            {% endblock %}
+        </div>
+        <aside class="fixed right-0 w-64 bg-gray-200 h-full px-4 py-4">  <h2>My Blog</h2>
+            <p>This is my blog. I hope you like it.</p>
+        </aside>
+    </main>
 </body>
 </html>

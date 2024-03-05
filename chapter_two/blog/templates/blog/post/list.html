@@ -3,16 +3,25 @@
 {% block title %}My Blog{% endblock %}
 
 {% block content %}
-<h1>My Blog</h1>
+<h1 class="text-3xl font-bold mb-8">My Blog</h1>
+<div class="grid gap-8">
     {% for post in posts %}
-        <h2>
-            <a href="{{ post.get_absolute_url }}">
-                {{ post.title }}
-            </a>
-        </h2>
-        <p class="date">
-            Published {{ post.publish }} by {{ post.author }}
-        </p>
-        {{ post.body|truncatewords:30|linebreaks }}
+        <article class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-6">
+                <h2 class="text-xl font-bold mb-2">
+                    <a href="{{ post.get_absolute_url }}" class="text-gray-800 hover:text-blue-500">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <p class="text-gray-600 text-sm mb-4">
+                    Published {{ post.publish }} by {{ post.author }}
+                </p>
+                <p class="text-gray-700 line-clamp-3">
+                    {{ post.body|truncatewords:30|linebreaks }}
+                </p>
+            </div>
+        </article>
     {% endfor %}
+</div>
+{% include 'blog/pagination.html' with page=posts %}
 {% endblock %}

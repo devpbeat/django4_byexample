@@ -19,7 +19,8 @@ def post_detail(request, year, month, day, post):
                             status=Post.Status.PUBLISHED,
                             publish__year=year,
                             publish__month=month,
-                            publish__day=day)
+                            publish__day=day,
+                            slug=post)
     
     return render(request,
                   'blog/post/detail.html',
